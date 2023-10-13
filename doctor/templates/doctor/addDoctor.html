@@ -1,0 +1,30 @@
+{% include 'base/header.html' %}
+    {% block content %}      
+    <!-- Modal -->
+    <div class="modal-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="text_productname" class="form-label">Doctor Name: </label>
+            <br/>
+            {{ dform.dname }}
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Doctor Specialization: </label>
+            <br/>
+            {{ dform.specialization }}
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Doctor Contact Number: </label>
+            <br/>
+            {{ dform.dnumber }}
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Doctor Loctaion: </label>
+            <br/>
+            {{ dform.dlocation }}
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    {% endblock %}

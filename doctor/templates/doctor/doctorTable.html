@@ -1,0 +1,39 @@
+{% include 'base/header.html' %} {% block content %}
+    {% if user.is_authenticated %}
+          <!-- Button trigger modal -->
+      <a href="{% url 'create_doctor' %}" class="btn btn-primary mb-4 mx-2">Add doctor</a>
+      <a href="{% url 'dashboard' %}" class="btn btn-primary mb-4 mx-2">Go to dashboard</a>
+      <table id="dTable" class="table table-bordered table-striped mt-4">
+        <thead class="table-danger">
+          <tr>
+            <th>Sr no.</th>
+            <th>Doctor name:</th>
+            <th>Doctor Specialization:</th>
+            <th>Doctor Contact Number:</th>
+            <th>Doctor Loctaion</th>
+            <th>Update Doctor Data</th>
+            <th>Delete Doctor Data</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for obj in doct_d %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ obj.dname }}</td>
+            <td>{{ obj.specialization }}</td>
+            <td>{{ obj.dnumber }}</td>
+            <td>{{ obj.dlocation }}</td>
+            <td><a href="{% url 'update_doctor' obj.id %}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square fa-sm"></i> Update</a></td>
+            <td><a href="{% url 'delete_doctor' obj.id %}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i> Delete</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <script>
+        let table = new DataTable('#dTable');
+      </script>
+   
+    {% else %}
+      <p>Please Login to access the data!!</p>
+    {% endif %}
+{% endblock %} {% include 'base/footer.html' %}

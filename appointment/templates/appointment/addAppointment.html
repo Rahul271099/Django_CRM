@@ -1,0 +1,11 @@
+{% include 'base/header.html' %}
+    {% block content %}      
+    <!-- Modal -->
+    <div class="modal-body">
+        <form method="POST">
+          {% csrf_token %}
+          {{ aform.as_p }}
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    {% endblock %}

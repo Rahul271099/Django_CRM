@@ -1,0 +1,39 @@
+{% include 'base/header.html' %} {% block content %}
+    {% if user.is_authenticated %}
+          <!-- Button trigger modal -->
+      <a href="{% url 'dashboard' %}" class="btn btn-primary mb-4 mx-2">Go to dashboard</a>
+      <table id="apTable" class="table table-bordered table-striped mt-4">
+        <thead class="table-danger">
+          <tr>
+            <th>Sr no.</th>
+            <th>User Name:</th>
+            <th>Employee First Name:</th>
+            <th>Employee Last Name:</th>
+            <th>Employee Email:</th>
+            <th>Date Of joining:</th>
+            <th>Employee status:</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in emp_data  %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ c.username }}</td>
+              {% if c.first_name  %}<td>{{ c.first_name }}</td>{% else %}<td>none</td>{% endif %}
+              {% if c.last_name  %}<td>{{ c.last_name }}</td>{% else %}<td>none</td>{% endif %}
+              {% if c.email  %}<td>{{ c.email }}</td>{% else %}<td>none</td>{% endif %}
+              <td>{{ c.date_joined }}</td>
+              <td>{{ c.is_active }}</td>
+              <td><a href="{% url 'update_employee' c.id %}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square fa-sm"></i> Update</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <h4> No Employess here....</h4>
+        {% endif %}
+      </table>
+      <script>
+        let table = new DataTable('#apTable');
+      </script>
+{% endblock %} {% include 'base/footer.html' %}

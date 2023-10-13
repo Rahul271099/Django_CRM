@@ -1,0 +1,31 @@
+{% include 'base/header.html' %} {% block content %}
+    {% if user.is_authenticated %}
+          <!-- Button trigger modal -->
+      {% comment %} <a href="{% url 'create_doctor' %}" class="btn btn-primary mb-4 mx-2">Add doctor</a> {% endcomment %}
+      <a href="{% url 'dashboard' %}" class="btn btn-primary mb-4 mx-2">Go to dashboard</a>
+      <table id="dTable" class="table table-bordered table-striped mt-4">
+        <thead class="table-danger">
+          <tr>
+            <th>Sr no.</th>
+            <th>Total Deals Done:</th>
+            <th>Employee Name:</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user,count in deal_count %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ count }}</td>
+            <td>{{ user }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <script>
+        let table = new DataTable('#dTable');
+      </script>
+   
+    {% else %}
+      <p>Please Login to access the data!!</p>
+    {% endif %}
+{% endblock %} {% include 'base/footer.html' %}

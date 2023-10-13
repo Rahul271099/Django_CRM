@@ -1,0 +1,31 @@
+{% include 'base/header.html' %} {% block content %}
+    {% if user.is_authenticated %}
+          <!-- Button trigger modal -->
+      {% comment %} <a href="{% url 'create_appointment' %}" class="btn btn-primary mb-4 mx-2">Shedule appointment</a> {% endcomment %}
+      <a href="{% url 'dashboard' %}" class="btn btn-primary mb-4 mx-2">Go to dashboard</a>
+      
+      <table id="apTable" class="table table-bordered table-striped mt-4">
+        <thead class="table-danger">
+          <tr>
+            <th>Sr no.</th>
+            <th>Total employee appointments:</th>
+            <th>Employee:</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for username,count in count  %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ count }}</td>
+              <td>{{ username  }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <h4> No Products Added in cart....</h4>
+        {% endif %}
+      </table>
+      <script>
+        let table = new DataTable('#apTable');
+      </script>
+{% endblock %} {% include 'base/footer.html' %}

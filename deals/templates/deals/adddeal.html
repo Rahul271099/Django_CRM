@@ -1,0 +1,25 @@
+{% include 'base/header.html' %}
+    {% block content %}      
+    <!-- Modal -->
+    <div class="modal-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="text_productname" class="form-label">Doctor Name: </label>
+            <br/>
+            {{ dform.doctor_name }}
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Product Name: </label>
+            <br/>
+            {{ dform.Product_name }}
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Quantity:</label>
+            <br/>
+            {{ dform.quantity }}
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    {% endblock %}

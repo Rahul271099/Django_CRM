@@ -1,0 +1,33 @@
+{% include 'base/header.html' %} {% block content %}
+    {% if user.is_authenticated %}
+          <!-- Button trigger modal -->
+      <a href="{% url 'create_appointment' %}" class="btn btn-primary">Shedule appointment</a>
+      <a href="{% url 'dashboard' %}" class="btn btn-primary mb-4 mx-2">Go to dashboard</a>
+      <table id="apTable" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr no.</th>
+            <th>Doctor name:</th>
+            <th>Date of appointment:</th>
+            <th>Time of appointment:</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for obj in apt_d %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ obj.doct_name.dname }}</td>
+            <td>{{ obj.schedule_date }}</td>
+            <td>{{ obj.Schedule_time }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        {% else %}
+        <h4> No Products Added in cart....</h4>
+        {% endif %}
+      </table>
+      <script>
+        let table = new DataTable('#apTable');
+      </script>
+{% endblock %} {% include 'base/footer.html' %}
+s

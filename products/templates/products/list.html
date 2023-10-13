@@ -1,0 +1,41 @@
+{% include 'base/header.html' %} {% block content %}
+    {% if user.is_authenticated %}
+          <!-- Button trigger modal -->
+          {% if not user.is_superuser %}<a href="{% url 'createProduct' %}" class="btn btn-primary mb-4 mx-2">Add Product</a>{% else %}{% endif %}
+          <a href="{% url 'dashboard' %}" class="btn btn-primary mb-4 mx-2">Go to dashboard</a>
+          <!-- Modal -->
+          <table id="myTable" class="table table-bordered">
+            <thead class="alert-warning">
+              <tr>
+                <th>Sr no.</th>
+                <th>product name</th>
+                <th>product comapany</th>
+                <th>product image</th>
+                <th>product price</th>
+                {% if user.is_superuser %}<th>Created By</th>{% endif %}
+                <th>Update Product</th>
+                <th>Delete Product</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for obj in pro_d %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ obj.product_name }}</td>
+                <td>{{ obj.product_company_name }}</td>
+                <td><img src="{{ obj.product_image.url }}" alt="product_image" width="100px"></td>
+                <td>{{ obj.product_price }}</td>
+                {% if user.is_superuser %}<td>{{ obj.enterd_by }}</td>{% endif %}
+                <td><a href="{% url 'updateProduct' obj.id %}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square fa-sm"></i> Update</a></td>
+                <td><a href="{% url 'deleteProduct' obj.id %}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i> Delete</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <script>
+            let table = new DataTable('#myTable');
+          </script>
+    {% else %}
+      <p>Please Login to access the data!!</p>
+  {% endif %}
+{% endblock %} {% include 'base/footer.html' %}

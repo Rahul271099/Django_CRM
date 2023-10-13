@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  {% load static %}
+
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+
+    <!-- Favicon -->
+
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css"
+      rel="stylesheet"
+    />
+    {% comment %} fontawesome icons {% endcomment %}
+    <script src="https://kit.fontawesome.com/4c608d5199.js" crossorigin="anonymous"></script>
+
+    <!-- Libraries Stylesheet -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}"> -->
+
+    <!--script src="{%static 'js/demo.js'%}"></script-->
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Topbar Start -->
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-2 px-3 px-lg-0">
+      <a href="{% url 'dashboard' %}" class="navbar-brand ms-lg-5">
+        <h1 class="m-0 text-uppercase text-dark">
+          <i class="bi bi-shop fs-1 text-primary me-3"></i>Medical App
+        </h1>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0 ml-5">
+          {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-primary mx-2">Go to dashboard</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    {% if messages %} 
+      {% for message in messages %} 
+      {% if message.tags == "success" %}
+        <div class="alert alert-success alert-dismissible fade show">
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+          <strong>{{ message }}</strong>
+        </div>
+      {% else %}
+        <div class="alert alert-danger alert-dismissible fade show">
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+          <strong>{{ message }}</strong>
+        </div>
+      {% endif %} 
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
